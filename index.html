@@ -70,10 +70,9 @@
 
         // Rock Paper Scissors
         if (userChoice === computerChoice) {
-            roundWinnerPara.textContent = "Round ended in a tie!";
+            roundWinnerPara.innerHTML = `Round ended in a <span style="color:blue;">tie</span>!`;
             background.style.backgroundColor = "white";
             background.style.border = "";
-            
         } else if (
             (userChoice === 'rock' && computerChoice === 'scissors') ||
             (userChoice === 'paper' && computerChoice === 'rock') ||
@@ -90,9 +89,10 @@
             background.style.backgroundColor = "rgba(255, 0, 0, 0.5)";
             background.style.border = "2px solid red";
             background.style.borderRadius = "25px";
+            
         }
-        userScores.textContent = `Your score is: "${userScore}". `;
-        computerScores.textContent = `Computer score is: "${computerScore}". `;
+        userScores.innerHTML = `Your score is: "<span style="color: green;">${userScore}</span>".`;
+        computerScores.innerHTML = `Computer score is: "<span style="color: red;">${computerScore}</span>".`;
         turn.textContent = `Turn: ${turns}`;
         newTurn();
     }
