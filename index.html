@@ -22,7 +22,7 @@
             <p class="userScore"></p>
             <p class="computerScore"></p>
             <p class="turn"></p>
-        </div>    
+        </div> 
     </div>
     <script>
         
@@ -31,7 +31,8 @@
         let userScore = 0;
         let computerScore = 0;
         let userChoice;
-        let turns = 0;
+        let turns = 1;
+        let winner;
         
         const userChoicePara = document.querySelector(".userChoicePara");
         const computerChoicePara = document.querySelector(".computerChoicePara");
@@ -39,8 +40,10 @@
         const userScores = document.querySelector(".userScore");
         const computerScores = document.querySelector(".computerScore");
         const turn = document.querySelector(".turn");
+        const background = document.querySelector(".left");
 
         function onButtonClick(event) {
+            roundWinnerPara.textContent = "";
             userChoice = Number(event.currentTarget.value);
             let randomNumber = Math.floor(Math.random() * 3) + 1;
 
@@ -68,7 +71,9 @@
         // Rock Paper Scissors
         if (userChoice === computerChoice) {
             roundWinnerPara.textContent = "Round ended in a tie!";
-            newTurn();
+            background.style.backgroundColor = "white";
+            background.style.border = "";
+            
         } else if (
             (userChoice === 'rock' && computerChoice === 'scissors') ||
             (userChoice === 'paper' && computerChoice === 'rock') ||
@@ -76,15 +81,20 @@
         ) {
             userScore++;
             roundWinnerPara.textContent = "You win!";
-            newTurn();
+            background.style.backgroundColor = "rgba(0, 255, 0, 0.5)";
+            background.style.border = "2px solid green";
+            background.style.borderRadius = "25px";
         } else {
             computerScore++;
             roundWinnerPara.textContent = "Computer wins!";
-            newTurn();
+            background.style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+            background.style.border = "2px solid red";
+            background.style.borderRadius = "25px";
         }
         userScores.textContent = `Your score is: "${userScore}". `;
         computerScores.textContent = `Computer score is: "${computerScore}". `;
         turn.textContent = `Turn: ${turns}`;
+        newTurn();
     }
     
         const buttons = document.querySelectorAll(".choice");
@@ -105,6 +115,31 @@
 
         function newTurn() {
             turns++;
+            if (turns === 6 && (userScore > computerScore)) {
+                winner = 'Player';
+                resetGame();
+            } else if (turns === 6 && (userScore < computerScore)) {
+                winner = 'Computer';
+                resetGame();
+            } else if (turns === 6 && (userScore === computerScore)) {
+                winner = 'None';
+                resetGame();
+            }
+        }
+                 
+
+        function resetGame() {
+            userScore = 0;
+            computerScore = 0;
+            turns = 1;
+            const resetParas = document.querySelectorAll(".resultParas p");
+            for (const resetPara of resetParas) {
+                resetPara.textContent = "";
+            }
+            background.style.backgroundColor = "white";
+            background.style.border = "";
+            roundWinnerPara.textContent = `The winner of the game is "${winner}"! `;
+            winner = "";
         }
 
         

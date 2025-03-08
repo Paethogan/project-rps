@@ -1,5 +1,7 @@
 :root {
     --main-darkgray: #2c2e2c;
+    --main-red: rgba(255, 0, 0, 0.75);
+    --main-green: rgba(0, 255, 0, 0.75);
 }
 
 * {
@@ -39,13 +41,12 @@ body {
 
 .resultParas p {
     font-family: 'Roboto', sans-serif;
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .left, .right {
-    width: 30%;
+    width: 40%;
     height: 50%;
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;

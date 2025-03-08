@@ -1,0 +1,47 @@
+Rock beats scissors
+Paper beats rock
+Scissors beats paper
+
+userChoice
+DISPLAY images of rock paper and scissors
+INPUT get user click and return value of user for userChoice
+RETURN rock paper scissors value for each round
+
+computerChoice 
+RANDOMLY SELECT computer FROM ["rock", "paper", "scissors"]
+DISPLAY computerChoice with "Computer chose: " and <image> corresponding to the choice
+
+MAKE three divs that contain rock, paper, and scissors
+LET divs have classes to corresponds to respective decision and be to button for input
+IF rock is chosen THEN disable scissors and paper
+IF paper is chosen THEN disable rock and scissors
+IF scissors is chosen THEN disable paper and rock
+GET userChoice from divs as type INPUT with rock paper scissors image buttons
+
+LET newRound()
+REPEAT userChoice and ComputerChoice
+UNTIL userScore = 2 || computerScore = 2
+COUNT rounds elapsed UNTIL winner is decided
+DISPLAY userChoice
+DISPLAY computerChoice
+DISPLAY roundWinner
+RESET userChoice and computerChoice
+
+LET rock()
+IF userChoice === rock && computerChoice === paper THEN computerScore++
+ELSE IF userChoice === paper && computerChoice === rock THEN userScore ++
+ELSE userChoice and computerChoice === rock THEN TIE, no change to score
+
+LET paper()
+IF userChoice === paper && computerChoice === scissors THEN computerScore++
+ELSE IF userChoice === scissors && computerChoice === paper THEN userScore++
+ELSE userChoice and computerChoice === paper THEN TIE, no change to score
+
+LET scissors()
+IF userChoice === scissors && computerChoice === rock THEN computerScore++
+ELSE IF userChoice === rock && computerChoice === scissors THEN userScore++
+ELSE userChoice and computerChoice === scissors THEN TIE, no change to score
+
+
+
+
