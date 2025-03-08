@@ -8,16 +8,106 @@
 </head>
 <body>
     <div class="form">
-        <button type="submit" class="submitRock"><img src="image/rock.jpg" width="200" height="200"/></button>
-        <button type="submit" class="submitPaper"><img src="image/paper.png" width="200" height="200"></button>
-        <button type="submit" class="submitScissors"><img src="image/scissors.jpg" width="200" height="200"></button>
+        <button type="submit" class="choice" value="1"><img src="image/rock.jpg" width="200" height="200"/></button>
+        <button type="submit" class="choice" value="2"><img src="image/paper.png" width="200" height="200"></button>
+        <button type="submit" class="choice" value="3"><img src="image/scissors.jpg" width="200" height="200"></button>
     </div>
     <div class="resultParas">
-        <p class="userChoice"></p>
-        <p class="computerChoice"></p>
-        <p class="roundWinner"></p>
+        <div class="left">
+            <p class="userChoicePara"></p>
+            <p class="computerChoicePara"></p>
+            <p class="roundWinnerPara"></p>
+        </div>
+        <div class="right">
+            <p class="userScore"></p>
+            <p class="computerScore"></p>
+            <p class="turn"></p>
+        </div>    
     </div>
     <script>
+        
+
+
+        let userScore = 0;
+        let computerScore = 0;
+        let userChoice;
+        let turns = 0;
+        
+        const userChoicePara = document.querySelector(".userChoicePara");
+        const computerChoicePara = document.querySelector(".computerChoicePara");
+        const roundWinnerPara = document.querySelector(".roundWinnerPara");
+        const userScores = document.querySelector(".userScore");
+        const computerScores = document.querySelector(".computerScore");
+        const turn = document.querySelector(".turn");
+
+        function onButtonClick(event) {
+            userChoice = Number(event.currentTarget.value);
+            let randomNumber = Math.floor(Math.random() * 3) + 1;
+
+            if (userChoice === 1) {
+                userChoice = 'rock';
+            } else if (userChoice === 2) {
+                userChoice = 'paper';
+            } else if (userChoice === 3) {
+                userChoice = 'scissors';
+            }
+            userChoicePara.textContent = `You selected: "${userChoice}". `;
+            
+            let computerChoice;
+        if (randomNumber === 1) {
+            computerChoice = 'rock';
+        } else if (randomNumber === 2) {
+            computerChoice = 'paper';
+        } else if (randomNumber === 3) {
+            computerChoice = 'scissors';
+        }
+        computerChoicePara.textContent = `Computer picked "${computerChoice}". `;
+
+        console.log(computerChoice);
+
+        // Rock Paper Scissors
+        if (userChoice === computerChoice) {
+            roundWinnerPara.textContent = "Round ended in a tie!";
+            newTurn();
+        } else if (
+            (userChoice === 'rock' && computerChoice === 'scissors') ||
+            (userChoice === 'paper' && computerChoice === 'rock') ||
+            (userChoice === 'scissors' && computerChoice === 'paper')
+        ) {
+            userScore++;
+            roundWinnerPara.textContent = "You win!";
+            newTurn();
+        } else {
+            computerScore++;
+            roundWinnerPara.textContent = "Computer wins!";
+            newTurn();
+        }
+        userScores.textContent = `Your score is: "${userScore}". `;
+        computerScores.textContent = `Computer score is: "${computerScore}". `;
+        turn.textContent = `Turn: ${turns}`;
+    }
+    
+        const buttons = document.querySelectorAll(".choice");
+        buttons.forEach(button => {
+            button.addEventListener("click", (event) => {
+                button.classList.add("clicked");
+                onButtonClick(event);
+
+                setTimeout(() => {
+                    button.classList.remove("clicked");
+                }, 200);
+            });
+        });
+            
+      
+        
+        // Game loop for rounds
+
+        function newTurn() {
+            turns++;
+        }
+
+        
         
     </script>
     

@@ -16,6 +16,7 @@ html {
 body {
     width: 100vw;
     height: 100vh;
+    line-height: 1.2;
 }
 
 .form {
@@ -27,9 +28,40 @@ body {
     margin-top: 4rem;
 }
 
+.resultParas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 2rem;
+}
+
+.resultParas p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+}
+
+.left, .right {
+    width: 30%;
+    height: 50%;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+}
+
 button {
     width: 25%;
     height: auto;
     border: 4px solid var(--main-darkgray);
     border-radius: 25px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.clicked {
+    transform: scale(0.9);
 }
