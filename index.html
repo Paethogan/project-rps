@@ -79,13 +79,13 @@
             (userChoice === 'scissors' && computerChoice === 'paper')
         ) {
             userScore++;
-            roundWinnerPara.textContent = "You win!";
+            roundWinnerPara.innerHTML = `"<span style="color: green;">You</span> win!"`;
             background.style.backgroundColor = "rgba(0, 255, 0, 0.5)";
             background.style.border = "2px solid green";
             background.style.borderRadius = "25px";
         } else {
             computerScore++;
-            roundWinnerPara.textContent = "Computer wins!";
+            roundWinnerPara.innerHTML = `"<span style="color: red;">Computer</span> wins!"`;
             background.style.backgroundColor = "rgba(255, 0, 0, 0.5)";
             background.style.border = "2px solid red";
             background.style.borderRadius = "25px";
@@ -122,7 +122,7 @@
                 winner = 'Computer';
                 resetGame();
             } else if (turns === 6 && (userScore === computerScore)) {
-                winner = 'None';
+                winner = 'Tie';
                 resetGame();
             }
         }
@@ -138,7 +138,7 @@
             }
             background.style.backgroundColor = "white";
             background.style.border = "";
-            roundWinnerPara.textContent = `The winner of the game is "${winner}"! `;
+            roundWinnerPara.innerHTML = `The winner of the game is "${winner}"! `;
             winner = "";
         }
 
